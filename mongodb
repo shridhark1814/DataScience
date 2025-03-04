@@ -1,0 +1,39 @@
+
+use exam
+
+
+show dbs
+
+
+db.createCollection("students")
+
+
+show collections
+
+
+var student_data = [
+    { seat_no: "101", name: "k0", class: "10", grade: "A", marks: 85 },
+    { seat_no: "102", name: "k1", class: "10", grade: "O", marks: 95 },
+    { seat_no: "103", name: "k2", class: "10", grade: "B", marks: 75 },
+    { seat_no: "104", name: "k3", class: "10", grade: "C", marks: 65 },
+    { seat_no: "105", name: "k4", class: "10", grade: "D", marks: 50 }
+];
+
+db.students.insertMany(student_data)  // Insert 5 records
+
+
+db.students.find().pretty()
+
+
+
+// Highest Marks
+db.students.find().sort({ marks: -1 }).limit(1)
+
+// Lowest Marks
+db.students.find().sort({ marks: 1 }).limit(1)
+
+// 8. Find records with marks greater than 80
+db.students.find({ marks: { $gt: 80 } })
+
+// 9. Find records with marks less than 80
+db.students.find({ marks: { $lt: 80 } })
